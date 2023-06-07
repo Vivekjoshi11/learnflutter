@@ -1,57 +1,130 @@
+// ignore_for_file: avoid_print, prefer_const_constructors, sort_child_properties_last, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-class LoginPage extends StatelessWidget {
+import 'package:learnflutter/utils/routes.dart';
+// import 'package:learnflutter/utils/routes.dart';
+// import 'package:flutter/utils';
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+     String name = "";
+     bool changeButton = false;
 
   @override
   Widget build(BuildContext context) {
    
     return Material(
       color: Colors.white,
-      child: Column(
-        children: [
-          Image.asset("lib/assets/images/loginimage.png",
-          fit: BoxFit.cover,),
-          ButtonTheme(child: const Text("login"),
-          ),
-          const SizedBox(height: 20.0),
-          const Text(
-            "Welcome",
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Image.asset("lib/assets/images/loginimage.png",
+            fit: BoxFit.cover,),
+            ButtonTheme(child: const Text("login"),
             ),
             const SizedBox(height: 20.0),
-            TextFormField(
-               decoration: const InputDecoration(
-              hintText: "Enter Username",
-              labelText:"Username",  
+             Text(
+              "Welcome $name",
+              
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
               ),
-            ),
-            TextFormField(
-              obscureText: true,
-               decoration: const InputDecoration(
-              hintText: "Enter Password",
-              labelText:"Password",  
               ),
-            ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-             child: const Text(
-              "Login",
-              // style: TextButton.styleFrom(minimumSize: Size(500, 30)),
-              // style: TextButton.styleFrom(
-              //   backgroundColor: Colors.blue,
+              const SizedBox(height: 20.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                child: Column(
+                  children:
+                   [
+                  TextFormField(
+                   decoration: const InputDecoration(
+                  hintText: "Enter Username",
+                  labelText:"Username",
+                  ),
+                  onChanged: (value) {
+                    name = value;
+                    setState(() {   
+                    });
+                  },
+                ),
+                TextFormField(
+                  obscureText: true,
+                   decoration: const InputDecoration(
+                  hintText: "Enter Password",
+                  labelText:"Password",  
+                  ),
+                ),
+                ],),
+              ),
+              const SizedBox(
+                height: 40.0
+                ),
+                 InkWell(
+                  onTap: () async{
+                    setState(() {
+                      changeButton = true;
+                    });
+                     await Future.delayed(Duration(seconds:1));
+                    Navigator.pushNamed(context, Myroutes.homeRoute);
+                    
+                    },
+                   child: AnimatedContainer(
+                    duration: Duration(seconds: 1),
+                    width: changeButton?50 : 150, // xyz ? truecond : falsecond
+                    height: 50,
+                    // color: Colors.deepPurple,
+                    alignment: Alignment.center,
+                    child: changeButton?Icon(Icons.done, color:Colors.white): Text("Login",
+                    style: TextStyle(color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize:18 ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(changeButton?50: 8),
+                    ),
+                    
+                                 ),
+                 ),
+              // ElevatedButton(
+              //  style: TextButton.styleFrom(minimumSize: const Size(150, 40)),
+              //  onPressed: (){
+              //   // print("Login");
+              //   Navigator.pushNamed(context, Myroutes.homeRoute);
+              //  },
+              //  child: const Text("Login" ),
               // )
-              ),
-             onPressed: (){
-              print("login");
-             },
-            )
-        ],
-      
+              // Container(
+              //   width: 150,
+              //   height: 40,
+                
+              //   alignment: Alignment.center,
+              //   child: Text(
+              //     "Login",
+                  
+              //     style: TextStyle(
+              //      color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20,
+              //     ),
+              //     ),
+              //     decoration: BoxDecoration(
+              //       color: Colors.deepPurple,
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              // )
+
+          ],
+        
+        ),
       ),
     );
+    
     
   }
 }
