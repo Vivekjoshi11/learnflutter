@@ -73,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
                     });
                      await Future.delayed(Duration(seconds:1));
                     Navigator.pushNamed(context, Myroutes.homeRoute);
-                    
                     },
                    child: AnimatedContainer(
                     duration: Duration(seconds: 1),
