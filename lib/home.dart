@@ -12,6 +12,7 @@ class Home_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: const Text("Vivek"),
         ),
         body: Center(
