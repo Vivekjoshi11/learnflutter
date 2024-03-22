@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, sort_child_properties_last, use_build_context_synchronously
+ // ignore_for_file: avoid_print, prefer_const_constructors, sort_child_properties_last, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:learnflutter/utils/routes.dart';
